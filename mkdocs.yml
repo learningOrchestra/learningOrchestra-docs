@@ -1,10 +1,15 @@
 site_name: learningOrchestra Docs
 nav:
   - Home: index.md
-  - Installation: installation.md
+  - About: about.md
+  - Installation: install.md
+  - Usage:
+    - REST APIs: rest-apis.md
+    - Python package: python-package.md
+  - Get support: support.md
   - Usage: usage.md
-  - API Guide: 
-    - Microservices REST APIs: 
+  - API Guide:
+    - Microservices REST APIs:
       - Database API: database-api.md
       - Projection API: projection-api.md
       - Data Type API: datatype-api.md
