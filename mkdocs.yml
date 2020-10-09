@@ -4,14 +4,7 @@ nav:
   - About: about.md
   - Install and deploy: install.md
   - Use:
-    - Description of the microservices:
-      - Database microservice: database.md
-      - Projection microservice: projection.md
-      - Data Type microservice: datatype.md
-      - Histogram microservice: histogram.md
-      - t-SNE microservice: t-sne.md
-      - PCA microservice: pca.md
-      - Model builder microservice: modelbuilder.md
+    - Description of the microservices: microservices.md
     - REST APIs: rest-apis.md
     - Python package: python-package.md
   - Get support: support.md
