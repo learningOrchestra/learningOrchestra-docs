@@ -15,37 +15,37 @@ The microservices can be called on from any computer, including one that is not 
 ### Database microservice
 
 Download and handle datasets in a database.
-For additional details, see the [REST API](database-rest.md) and [Python package](python-package.md) documentations.
+For additional details, see the [REST API](database-rest.md) and [Python package](database-python.md) documentations.
 
 ### Data type microservice
 
 Change dataset fields type between number and text.
-For additional details, see the [REST API](datatype-rest.md) and [Python package](python-package.md) documentations.
+For additional details, see the [REST API](datatype-rest.md) and [Python package](datatype-python.md) documentations.
 
 ### Projection microservice
 
 Make projections of stored datasets using Spark cluster.
-For additional details, see the [REST API](projection-rest.md) and [Python package](python-package.md) documentations.
+For additional details, see the [REST API](projection-rest.md) and [Python package](projection-python.md) documentations.
 
 ### Histogram microservice
 
 Make histograms of stored datasets.
-For additional details, see the [REST API](histogram-rest.md) and [Python package](python-package.md) documentations.
+For additional details, see the [REST API](histogram-rest.md) and [Python package](histogram-python.md) documentations.
 
 ### t-SNE microservice
 
 Make a t-SNE image plot of stored datasets.
-For additional details, see the [REST API](t-sne-rest.md) and [Python package](python-package.md) documentations.
+For additional details, see the [REST API](t-sne-rest.md) and [Python package](t-sne-python.md) documentations.
 
 ### PCA microservice
 
 Make a PCA image plot of stored datasets.
-For additional details, see the [REST API](pca-rest.md) and [Python package](python-package.md) documentations.
+For additional details, see the [REST API](pca-rest.md) and [Python package](pca-python.md) documentations.
 
 ### Model builder microservice
 
 Create a prediction model from pre-processed datasets using Spark cluster.
-For additional details, see the [REST API](modelbuilder-rest.md) and [Python package](python-package.md) documentations.
+For additional details, see the [REST API](modelbuilder-rest.md) and [Python package](modelbuilder-python.md) documentations.
 
 ## Additional information
 ### Spark Microservices
