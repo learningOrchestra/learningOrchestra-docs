@@ -14,7 +14,7 @@ The current version of learningOrchestra offers 7 microservices:
 
 The microservices can be called on from any computer, including one that is not part of the cluster learningOrchestra is deployed on. learningOrchestra provides two options to access its features: a **microservice REST API** and a **Python package**.
 
-Use this documentation to [learn more about the learningOrchestra project](https://learningorchestra.github.io/docs/about), [learn how to install and deploy learningOrchestra on a cluster](https://learningorchestra.github.io/docs/install), learn how to use the [REST APIs](https://learningorchestra.github.io/docs/rest-apis) and [Python package](https://learningorchestra.github.io/docs/python-package) to access learningOrchestra microservices, or [find options to get support](https://learningorchestra.github.io/docs/support)
+Use this documentation to [learn more about the learningOrchestra project](about.md), [learn how to install and deploy learningOrchestra on a cluster](install.md), learn how to use the [REST APIs](rest-apis.md) and [Python package](python-package.md) to access learningOrchestra microservices, or [find options to get support](support.md)
 
 You can also visit the repositories of the learningOrchestra project:
 - [learningOrchestra](https://github.com/learningOrchestra/learningOrchestra) for the definition of the microservices and the REST APIs,
