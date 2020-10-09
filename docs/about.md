@@ -1,3 +1,5 @@
+# About learningOrchestra
+
 Nowadays, **data science relies on a wide range of computer science skills**, from data management to algorithm design, from code optimization to cloud infrastructures. Data scientists are expected to have expertise in these diverse fields, especially when working in small teams or for academia.
 
 This situation can constitute a barrier to the actual extraction of new knowledge from collected data,

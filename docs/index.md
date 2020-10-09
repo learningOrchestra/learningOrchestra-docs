@@ -1,4 +1,4 @@
-# learningOrchestra Docs
+# learningOrchestra user documentation
 
 learningOrchestra aims to facilitate the development of complex data mining workflows by **seamlessly interfacing different data science tools and services**. From a single interoperable Application Programming Interface (API), users can **design their analytical pipelines and deploy them in an environment with the appropriate capabilities**.
 

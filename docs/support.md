@@ -1,3 +1,5 @@
+# Get support as a user
+
 To get support as a learningOrchestra user, please fill an issue to the corresponding repository.
 
 When creating an issue for a bug or another undefined/unwanted behaviour, please remember to include the steps required to reproduce the behaviour in your issue.
