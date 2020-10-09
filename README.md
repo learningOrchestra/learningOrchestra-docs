@@ -4,9 +4,9 @@
 
 To make changes clone the repo:
 
-`git clone https://github.com/learningOrchestra/learningOrchestra-docs.git`
+`git clone https://github.com/learningOrchestra/docs.git`
 
-`cd learningOrchestra-docs`
+`cd docs`
 
 Install mkdocs:
 
