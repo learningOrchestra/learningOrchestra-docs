@@ -10,12 +10,47 @@ The current version of learningOrchestra offers 7 microservices:
 
 The microservices can be called on from any computer, including one that is not part of the cluster learningOrchestra is deployed on. learningOrchestra provides two options to access its features: a **microservice REST API** and a **Python package**.
 
+<!-- TOC depthFrom:2 depthTo:4 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Available microservices](#available-microservices)
+	- [Database microservice](#database-microservice)
+		- [Combine the Database microservice with a GUI](#combine-the-database-microservice-with-a-gui)
+	- [Data type microservice](#data-type-microservice)
+	- [Projection microservice](#projection-microservice)
+	- [Histogram microservice](#histogram-microservice)
+	- [t-SNE microservice](#t-sne-microservice)
+	- [PCA microservice](#pca-microservice)
+	- [Model builder microservice](#model-builder-microservice)
+- [Additional information](#additional-information)
+	- [Spark Microservices](#spark-microservices)
+
+<!-- /TOC -->
+
 ## Available microservices
 
 ### Database microservice
 
-Download and handle datasets in a database.
+The Database microservice is an abstraction layer of a [MongoDB](https://www.mongodb.com/) database. MongoDB uses [NoSQL, aka non-relational, databases](https://en.wikipedia.org/wiki/NoSQL), so the data is stored as [JSON](https://www.json.org/json-en.html)-like documents.
+
+The Database microservice is organised so each database document corresponds to a CSV file. The key of a file is its filename. The file metadata is saved as its first row.
+
+The microservice provides entry points to add a CSV file to the database, delete a CSV file from the database, retrieve the content of a CSV file in the database and list all files in the database.
+
+The Database microservice serves as a central pivot for the others microservices. They all use the Database microservice as their data source. All but the t-SNE and the PCA microservices send their results to the Database microservice to save.
+
 For additional details, see the [REST API](database-rest.md) and [Python package](database-python.md) documentations.
+
+#### Combine the Database microservice with a GUI
+
+GUI database managers like [NoSQLBooster](https://nosqlbooster.com) can interact directly with MongoDB. Using one will let you perform additional tasks which are not implemented in the Database microservice, such as schema visualization, file extractionor direct CSV or JSON download.
+
+Using a GUI is fully compatible with using learningOrchestra Database microservice.
+
+You can connect a MongoDB-compatible GUI to your learningOrchestra database with the url `cluster_ip:27017`, where `cluster_ip` is the IP address to an instance of your cluster. You will need to provide the following credentials:
+```
+username = root
+password = owl45#21
+```
 
 ### Data type microservice
 
@@ -59,10 +94,3 @@ To do this, with learningOrchestra already deployed, run the following in the ma
 `docker service scale microservice_sparkworker=NUMBER_OF_INSTANCES`
 
 *\** `NUMBER_OF_INSTANCES` *is the number of Spark microservice instances which you require. Choose it according to your cluster resources and your resource requirements.*
-
-### Database GUI
-
-NoSQLBooster- MongoDB GUI performs several database tasks such as file visualization, queries, projections and file extraction to CSV and JSON formats.
-It can be util to accomplish some these tasks with your processed dataset or get your prediction results.
-
-Read the [Database API docs](https://learningorchestra.github.io/docs/database-api/) for more info on configuring this tool.
