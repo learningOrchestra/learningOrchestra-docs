@@ -72,7 +72,12 @@ For additional details, see the [REST API](histogram-rest.md) and [Python packag
 
 ### t-SNE microservice
 
-Make a t-SNE image plot of stored datasets.
+The t-SNE microservice transforms the data of a given source using the [T-distributed Stochastic Neighbor Embedding]((https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding)) algorithm, generates the t-SNE graphical representations and manages the generated images.
+
+t-SNE is a machine learning algorithm for visualization of high-dimensional data. It relies on a non-linear dimensionality reduction technique to project high-dimensional data into a low-dimensional space (two or three dimensions). It models each high-dimensional object by a point in a low-dimensional space in such a way that similar objects are represented by nearby points with high probability, and conversely dissimilar objects are represented by distant points with high probability.
+
+The t-SNE microservice provides entry points to create and store a t-SNE graphical representation of a dataset, to list all the images previously stored by the microservice, to download one of these images, and to delete one of these images.
+
 For additional details, see the [REST API](t-sne-rest.md) and [Python package](t-sne-python.md) documentations.
 
 ### PCA microservice
