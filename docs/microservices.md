@@ -66,7 +66,8 @@ For additional details, see the [REST API](projection-rest.md) and [Python packa
 
 ### Histogram microservice
 
-Make histograms of stored datasets.
+The Histogram microservice transform the data of a given source into an aggregate with observation counts for each value bin. The aggregate data is saved into the database from the Database microservice and can then be used to generate an histogram representation of the source data.
+
 For additional details, see the [REST API](histogram-rest.md) and [Python package](histogram-python.md) documentations.
 
 ### t-SNE microservice
