@@ -61,7 +61,8 @@ For additional details, see the [REST API](datatype-rest.md) and [Python package
 
 ### Projection microservice
 
-Make projections of stored datasets using Spark cluster.
+The Projection microservice is a data manipulation microservice. It provides an entry point to simplify a dataset by selecting only certain fields (= column for data organised as a table).
+
 For additional details, see the [REST API](projection-rest.md) and [Python package](projection-python.md) documentations.
 
 ### Histogram microservice
