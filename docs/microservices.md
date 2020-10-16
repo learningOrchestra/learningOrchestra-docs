@@ -54,7 +54,9 @@ password = owl45#21
 
 ### Data type microservice
 
-Change dataset fields type between number and text.
+The Data type microservice revolves around casting the data for a given field (= column for data organised as a table) to a new type. The microservice can cast fields into *strings* or into number types (*float* by default, *int* if appropriate).
+
+
 For additional details, see the [REST API](datatype-rest.md) and [Python package](datatype-python.md) documentations.
 
 ### Projection microservice
