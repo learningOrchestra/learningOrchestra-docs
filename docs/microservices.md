@@ -73,7 +73,7 @@ For additional details, see the [REST API](histogram-rest.md) and [Python packag
 
 ### t-SNE microservice
 
-The t-SNE microservice transforms the data of a given source using the [T-distributed Stochastic Neighbor Embedding]((https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding)) algorithm, generates the t-SNE graphical representations and manages the generated images.
+The t-SNE microservice transforms the data of a given source using the [T-distributed Stochastic Neighbor Embedding]((https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding)) algorithm, generates the t-SNE graphical representations, and manages the generated images.
 
 t-SNE is a machine learning algorithm for visualization of high-dimensional data. It relies on a non-linear dimensionality reduction technique to project high-dimensional data into a low-dimensional space (two or three dimensions). It models each high-dimensional object by a point in a low-dimensional space in such a way that similar objects are represented by nearby points with high probability, and conversely dissimilar objects are represented by distant points with high probability.
 
@@ -83,7 +83,12 @@ For additional details, see the [REST API](t-sne-rest.md) and [Python package](t
 
 ### PCA microservice
 
-Make a PCA image plot of stored datasets.
+The PCA microservice decompose the data of a given source into a set of orthogonal components that explain a maximum amount of the variance, plots the data into the space defined by those components, and manages the generated images.
+
+The implementation of this microservice relies on the [scikit-learn libray](https://scikit-learn.org/stable/modules/decomposition.html#pca).
+
+The PCA microservice provides entry points to create and store a PCA graphical representation of a dataset, to list all the images previously stored by the microservice, to download one of these images, and to delete one of these images.
+
 For additional details, see the [REST API](pca-rest.md) and [Python package](pca-python.md) documentations.
 
 ### Model builder microservice
