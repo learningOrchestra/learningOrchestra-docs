@@ -63,6 +63,8 @@ For additional details, see the [REST API](datatype-rest.md) and [Python package
 
 The Projection microservice is a data manipulation microservice. It provides an entry point to simplify a dataset by selecting only certain fields (= column for data organised as a table).
 
+It runs as a Spark microservice and can be spread over [several instances](#spark-microservices).
+
 For additional details, see the [REST API](projection-rest.md) and [Python package](projection-python.md) documentations.
 
 ### Histogram microservice
@@ -79,6 +81,8 @@ t-SNE is a machine learning algorithm for visualization of high-dimensional data
 
 The t-SNE microservice provides entry points to create and store a t-SNE graphical representation of a dataset, to list all the images previously stored by the microservice, to download one of these images, and to delete one of these images. It relies on a dedicated storage in the Spark cluster rather than the Database microservice.
 
+It runs as a Spark microservice and can be spread over [several instances](#spark-microservices).
+
 For additional details, see the [REST API](t-sne-rest.md) and [Python package](t-sne-python.md) documentations.
 
 ### PCA microservice
@@ -89,11 +93,15 @@ The implementation of this microservice relies on the [scikit-learn libray](http
 
 The PCA microservice provides entry points to create and store a PCA graphical representation of a dataset, to list all the images previously stored by the microservice, to download one of these images, and to delete one of these images. It relies on a dedicated storage in the Spark cluster rather than the Database microservice.
 
+It runs as a Spark microservice and can be spread over [several instances](#spark-microservices).
+
 For additional details, see the [REST API](pca-rest.md) and [Python package](pca-python.md) documentations.
 
 ### Model builder microservice
 
 The Model builder microservice is a all-in-one entry point to train, evaluate and apply classification models. It loads datasets from the Database microservice, preprocesses their content using a user-specified Python script, trains each of the specified classifiers on the training dataset, evaluates the accuracy of the trained model on an evaluation dataset, predicts the labels of the unlabelled testing dataset and saves the accuracy results and predicted labels.
+
+It runs as a Spark microservice and can be spread over [several instances](#spark-microservices).
 
 For additional details, see the [REST API](modelbuilder-rest.md) and [Python package](modelbuilder-python.md) documentations.
 
@@ -229,16 +237,13 @@ features_training = assembler.transform(training_df)
 features_testing = assembler.transform(testing_df)
 ```
 
-
 ## Additional information
 ### Spark Microservices
 
 The Projection, t-SNE, PCA and Model builder microservices uses the Spark microservice to work.
 
-By default, this microservice has only one instance. In case your data processing requires more computing power, you can scale this microservice.
-
-To do this, with learningOrchestra already deployed, run the following in the manager machine of your Docker swarm cluster:
+By default, this microservice has only one instance. In case youyou require more computing power, you can scale this microservice by running the following command in the manager machine of the swarm cluster on which learningOrchestra is deployed:
 
 `docker service scale microservice_sparkworker=NUMBER_OF_INSTANCES`
 
-*\** `NUMBER_OF_INSTANCES` *is the number of Spark microservice instances which you require. Choose it according to your cluster resources and your resource requirements.*
+where `NUMBER_OF_INSTANCES` is the number of Spark microservice instances which you require, chosen according to your cluster resources and your computing power needs.
