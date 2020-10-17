@@ -14,7 +14,7 @@ When creating an issue for a bug or other undefined/unwanted behaviour remember 
 
 ## Pull Request process
 
-1. [Fork](https://github.com/riibeirogabriel/learningOrchestra/fork) the repository
+1. [Fork](https://github.com/learningOrchestra/docs/fork) the repository
 2. [Clone](https://git-scm.com/docs/git-clone) your fork to your local environment
 3. Navigate into the project root directory
 4. Create a new [branch](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging), the branch should be named according to what feature/fix you're implementing
@@ -26,7 +26,7 @@ When creating an issue for a bug or other undefined/unwanted behaviour remember 
 7. Create a Pull Request
 
 Remember to describe what feature or fix you're implementing in the Pull Request window.
-In the Pull Request window remember to include a quick summary of what the committed code does and how it is an improvement. 
+In the Pull Request window remember to include a quick summary of what the committed code does and how it is an improvement.
 
 After the Pull Request the repository owner will review your request.\
 Be patient, if they require you to make changes to your request, do so.

@@ -1,12 +1,12 @@
-# Database API 
+# Database API
 
-The **Database API** microservice creates a level of abstraction through a REST API. 
+The **Database API** microservice creates a level of abstraction through a REST API.
 
 Using MongoDB, datasets are downloaded in CSV format and parsed into JSON format where the primary key for each document is the filename field contained in the JSON file POST request.
 
 ## GUI tool to handle database files
 
-There are GUI tools to handle database files, like [NoSQLBooster](https://nosqlbooster.com) can interact with mongoDB used in database, and makes several tasks which are limited in `learning-orchestra-client` package, as schema visualization and files extraction and download to formats as CSV and JSON. 
+There are GUI tools to handle database files, like [NoSQLBooster](https://nosqlbooster.com) can interact with mongoDB used in database, and makes several tasks which are limited in `learning-orchestra-client` package, as schema visualization and files extraction and download to formats as CSV and JSON.
 
 You also can navigate in all inserted files in easy way and visualize each row from determined file, to use this tool connect with the url `cluster\_ip:27017` and use the credentials:
 
@@ -91,7 +91,7 @@ Returns an array of metadata files from the database, where each file contains a
 * `F1` - F1 Score from model accuracy
 * `accuracy` - Accuracy from model prediction
 * `classificator` - Initials from used classificator
-* `filename` - Name of the file 
+* `filename` - Name of the file
 * `fit_time` - Time taken for the model to be fit during training
 
 ## List file content
@@ -112,7 +112,7 @@ The first row in the query is always the metadata file.
 `POST CLUSTER_IP:5000/files`
 
 Insert a CSV into the database using the POST method, JSON must be contained in the body of the HTTP request.
-The following fields are required: 
+The following fields are required:
 
 ```json
 {

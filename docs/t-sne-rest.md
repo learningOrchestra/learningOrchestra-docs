@@ -1,8 +1,8 @@
 # t-SNE API
 
-The T-distributed Stochastic Neighbor Embedding (t-SNE) is a machine learning algorithm for visualization. 
+The T-distributed Stochastic Neighbor Embedding (t-SNE) is a machine learning algorithm for visualization.
 
-It is a nonlinear dimensionality reduction technique well-suited for embedding high-dimensional data for visualization in a low-dimensional space of two or three dimensions. 
+It is a nonlinear dimensionality reduction technique well-suited for embedding high-dimensional data for visualization in a low-dimensional space of two or three dimensions.
 
 Specifically, it models each high-dimensional object by a two- or three-dimensional point in such a way that similar objects are modeled by nearby points and dissimilar objects are modeled by distant points with high probability, more information about this algorithm in its [Wiki page]( https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding).
 
@@ -39,7 +39,7 @@ Deletes an image plot by specifying its file name.
 `GET CLUSTER_IP:5005/images`
 
 Returns a list with all created images plot file name.
- 
+
 ## Read an image plot
 
 `GET CLUSTER_IP:5005/images/<image_plot_filename>`

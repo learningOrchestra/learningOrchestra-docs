@@ -1,18 +1,13 @@
 site_name: learningOrchestra Docs
 nav:
   - Home: index.md
-  - Installation: installation.md
-  - Usage: usage.md
-  - API Guide: 
-    - Microservices REST APIs: 
-      - Database API: database-api.md
-      - Projection API: projection-api.md
-      - Data Type API: datatype-api.md
-      - Histogram API: histogram-api.md
-      - t-SNE API: t-sne-api.md
-      - PCA API: pca-api.md
-      - Model builder API: modelbuilder-api.md
-    - python-client APIs: python-apis.md
+  - About: about.md
+  - Install and deploy: install.md
+  - Use:
+    - Description of the microservices: microservices.md
+    - REST APIs: rest-apis.md
+    - Python package: python-package.md
+  - Get support: support.md
 theme:
   name: readthedocs
   features:

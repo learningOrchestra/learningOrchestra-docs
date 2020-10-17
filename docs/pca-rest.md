@@ -1,10 +1,10 @@
 # PCA API
 
-PCA is used to decompose a multivariate dataset in a set of successive orthogonal components that explain a maximum amount of the variance. 
+PCA is used to decompose a multivariate dataset in a set of successive orthogonal components that explain a maximum amount of the variance.
 
 In `scikit-learn` (used in this microservice), PCA is implemented as a transformer object that learns components in its fit method, and can be used on new data to project it on these components.
 
-PCA centers but does not scale the input data for each feature before applying the SVD. The optional parameter `whiten = True` makes it possible to project the data onto the singular space while scaling each component to unit variance. 
+PCA centers but does not scale the input data for each feature before applying the SVD. The optional parameter `whiten = True` makes it possible to project the data onto the singular space while scaling each component to unit variance.
 
 This is often useful if the models down-stream make strong assumptions on the isotropy of the signal: this is for example the case for Support Vector Machines with the RBF kernel and the K-Means clustering algorithm, more information about this algorithm in [scikit-learn PCA docs](https://scikit-learn.org/stable/modules/decomposition.html#pca).
 
@@ -41,7 +41,7 @@ Deletes an image plot from the database.
 `GET CLUSTER_IP:5006/images`
 
 Returns a list with all created image plot filenames.
- 
+
 ## Read an image plot
 
 `GET CLUSTER_IP:5006/images/<image_plot_filename>`

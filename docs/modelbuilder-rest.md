@@ -1,6 +1,6 @@
 # Model Builder API
 
-Model Builder microservice provides a REST API to create several model predictions using your own preprocessing code using a defined set of classifiers. 
+Model Builder microservice provides a REST API to create several model predictions using your own preprocessing code using a defined set of classifiers.
 
 ## Create prediction model
 
