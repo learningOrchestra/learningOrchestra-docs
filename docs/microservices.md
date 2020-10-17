@@ -93,8 +93,142 @@ For additional details, see the [REST API](pca-rest.md) and [Python package](pca
 
 ### Model builder microservice
 
-Create a prediction model from pre-processed datasets using Spark cluster.
+The Model builder microservice is a all-in-one entry point to train, evaluate and apply classification models. It loads datasets from the Database microservice, preprocesses their content using a user-specified Python script, trains each of the specified classifiers on the training dataset, evaluates the accuracy of the trained model on an evaluation dataset, predicts the labels of the unlabelled testing dataset and saves the accuracy results and predicted labels.
+
 For additional details, see the [REST API](modelbuilder-rest.md) and [Python package](modelbuilder-python.md) documentations.
+
+#### Available classifiers
+
+The following classifiers are currently available through the Model builder microservice, in their Pyspark implementation:
+* Logistic regression
+* Decision tree classifier
+* Random forest classifier
+* Gradient-boosted tree classifier
+* Naive Bayes
+
+#### Preprocessing script
+
+The preprocessing script must be written by the user in Python 3 and include the Pyspark library.
+
+:exclamation: The variable names currently used are not the names typically used in machine learning libraries. Please take care to read their descriptions to understand their actual role.
+
+The following environment instances are made available to it:
+- `training_df`: a Spark Dataframe instance holding the training-and-evaluation dataset loaded from the Database microservice,
+- `testing_df`: a Spark Dataframe instance holding the unlabelled dataset loaded from the Database microservice.
+
+The preprocessing script must rename the label column as "label" in the training-and-evaluation dataset and create a zero-value "label" column in the unlabelled dataset.
+
+The preprocessing script must instantiate the following variables using Pyspark VectorAssembler:
+- `features_training`: Spark Dataframe instance with the preprocessed training dataset, **including** the "label" column,
+* `features_evaluation`: Spark Dataframe instance with the preprocessed testing dataset to measure classification accuracy, **including** the "label" column,
+* `features_testing`: Spark Dataframe instance with the unlabelled dataset on which to apply the model, **including** the zero-value "label" column.
+
+In case you don't want to evaluate the model, `features_evaluation` can be set to `None`.
+
+##### Example of preprocessing script
+
+This example uses the [titanic challengue datasets](https://www.kaggle.com/c/titanic/overview).
+
+```python
+from pyspark.ml import Pipeline
+from pyspark.sql.functions import (
+    mean, col, split,
+    regexp_extract, when, lit)
+
+from pyspark.ml.feature import (
+    VectorAssembler,
+    StringIndexer
+)
+
+TRAINING_DF_INDEX = 0
+TESTING_DF_INDEX = 1
+
+training_df = training_df.withColumnRenamed('Survived', 'label')
+testing_df = testing_df.withColumn('label', lit(0))
+datasets_list = [training_df, testing_df]
+
+for index, dataset in enumerate(datasets_list):
+    dataset = dataset.withColumn(
+        "Initial",
+        regexp_extract(col("Name"), "([A-Za-z]+)\.", 1))
+    datasets_list[index] = dataset
+
+misspelled_initials = [
+    'Mlle', 'Mme', 'Ms', 'Dr',
+    'Major', 'Lady', 'Countess',
+    'Jonkheer', 'Col', 'Rev',
+    'Capt', 'Sir', 'Don'
+]
+correct_initials = [
+    'Miss', 'Miss', 'Miss', 'Mr',
+    'Mr', 'Mrs', 'Mrs',
+    'Other', 'Other', 'Other',
+    'Mr', 'Mr', 'Mr'
+]
+for index, dataset in enumerate(datasets_list):
+    dataset = dataset.replace(misspelled_initials, correct_initials)
+    datasets_list[index] = dataset
+
+
+initials_age = {"Miss": 22,
+                "Other": 46,
+                "Master": 5,
+                "Mr": 33,
+                "Mrs": 36}
+for index, dataset in enumerate(datasets_list):
+    for initial, initial_age in initials_age.items():
+        dataset = dataset.withColumn(
+            "Age",
+            when((dataset["Initial"] == initial) &
+                 (dataset["Age"].isNull()), initial_age).otherwise(
+                    dataset["Age"]))
+        datasets_list[index] = dataset
+
+
+for index, dataset in enumerate(datasets_list):
+    dataset = dataset.na.fill({"Embarked": 'S'})
+    datasets_list[index] = dataset
+
+
+for index, dataset in enumerate(datasets_list):
+    dataset = dataset.withColumn("Family_Size", col('SibSp')+col('Parch'))
+    dataset = dataset.withColumn('Alone', lit(0))
+    dataset = dataset.withColumn(
+        "Alone",
+        when(dataset["Family_Size"] == 0, 1).otherwise(dataset["Alone"]))
+    datasets_list[index] = dataset
+
+
+text_fields = ["Sex", "Embarked", "Initial"]
+for column in text_fields:
+    for index, dataset in enumerate(datasets_list):
+        dataset = StringIndexer(
+            inputCol=column, outputCol=column+"_index").\
+                fit(dataset).\
+                transform(dataset)
+        datasets_list[index] = dataset
+
+
+non_required_columns = ["Name", "Embarked", "Sex", "Initial"]
+for index, dataset in enumerate(datasets_list):
+    dataset = dataset.drop(*non_required_columns)
+    datasets_list[index] = dataset
+
+
+training_df = datasets_list[TRAINING_DF_INDEX]
+testing_df = datasets_list[TESTING_DF_INDEX]
+
+assembler = VectorAssembler(
+    inputCols=training_df.columns[:],
+    outputCol="features")
+assembler.setHandleInvalid('skip')
+
+features_training = assembler.transform(training_df)
+(features_training, features_evaluation) =\
+    features_training.randomSplit([0.8, 0.2], seed=33)
+features_testing = assembler.transform(testing_df)
+```
+
 
 ## Additional information
 ### Spark Microservices
